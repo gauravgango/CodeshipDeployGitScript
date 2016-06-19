@@ -27,13 +27,13 @@ Method to deploy to remote server using Codeship and Git using git hooks
 	chmod +x post-receive
 	````
 6. Remove the Codeship deployment key from your git hub repository.
-	6.1. Go to settings in your git hub repository
-	6.2. Go to deployment keys
-	6.3. Remove the Codeship deployment key
+	* Go to settings in your git hub repository
+	* Go to deployment keys
+	* Remove the Codeship deployment key
 7. Add the public ssh key provided in general setting of Codeship project to the git hub account
-	7.1. Go to settings panel of your git hub account
-	7.2. Go to SSH and GPO keys
-	7.3. Add SSH key of Codeship project
+	* Go to settings panel of your git hub account
+	* Go to SSH and GPO keys
+	* Add SSH key of Codeship project
 8. Add the Codeship public ssh key to the server/remote. So that Codeship can access the server/remote
 	````sh
 	cd ~/.ssh
@@ -42,8 +42,8 @@ Method to deploy to remote server using Codeship and Git using git hooks
 9. Create a deployment pipeline in Codeship using **Custom Script**
 10. Add the content of **codeship-deploy** to the custom script
 11. Create environment variables 
-	11.1. REMOTE_REPOSITORY = ssh user@yourdomain.com:/path/to/your/bare/repository
-	11.2. REMOTE_BRANCH = master
+	* REMOTE_REPOSITORY = ssh user@yourdomain.com:/path/to/your/bare/repository
+	* REMOTE_BRANCH = master
 
 
 ## Methods of deployment
@@ -51,7 +51,7 @@ Method to deploy to remote server using Codeship and Git using git hooks
 2. Method 2 : On deployment pull the github origin
 
 ## Method 1 : On deployment by checking to new commit
-1. Edit your post-receive with the content provided in the **Method1_post_receive**
+1. Edit your post-receive with the content provided in the **Method1_post_receive** by providing the folder path of deploy to **--work-tree** and folder path of bare repository to **--work-dir**
 2. The hook will be fired when Codeship will fire the deployment script
 3. The **--work-tree** contains the path to your main folder where the code needs to be deployed
 4. The **--git-dir** contains the folder where the bare repository was created. It is essentially the **.git** folder of your repository
@@ -62,7 +62,7 @@ Method to deploy to remote server using Codeship and Git using git hooks
 	````sh
 	git add origin yourgithuborigin.git
 	````
-1. Edit your post-receive with the content provided in the **Method2_post_receive**
+1. Edit your post-receive with the content provided in the **Method2_post_receive**by providing the folder path of deploy to **--work-tree** and folder path of bare repository to **--work-dir** as the deploy folder's with **.git** folder
 2. The hook will be fired when Codeship will fire the deployment script
 3. The **--work-tree** contains the path to your main folder where the code needs to be deployed
 4. The **--git-dir** contains the folder where the bare repository was created. Here it is the **.git** folder of your deployment folder as it contains the origin information
