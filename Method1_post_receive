@@ -1,0 +1,15 @@
+#!/bin/bash
+
+while read oldrev newrev ref
+do
+    echo "Branch being deployed"
+    echo $ref
+    if [[ $ref =~ .*/master$ ]];
+    then
+        echo "Master ref received.  Deploying master branch to production..."
+        git --work-tree=/path/to/your/content/folder --git-dir=/path/to/your/bare/repository checkout -f
+    else
+        echo "Ref $ref successfully received.  Doing nothing: only the master branch may be deployed on this server."
+    fi
+done
+
